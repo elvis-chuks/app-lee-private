@@ -1,8 +1,16 @@
 from flask import Flask
+from flask_pymongo import PyMongo
+
+
 application = Flask(__name__)
+mongo = PyMongo(application)
+
+application.config['MONGO_URI'] = 'mongodb://elvis:elvischuks@$OPENSHIFT_MONGODB_DB_HOST:$OPENSHIFT_MONGODB_DB_PORT'
 
 @application.route("/")
 def hello():
+    e = mongo.db.apps
+    apps.insert({'name':'test'})
     return 'hey this is applee'
 
 @application.route("/test")
