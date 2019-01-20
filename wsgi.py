@@ -6,8 +6,11 @@ import os
 ################# initialize flask ####################################
 application = Flask(__name__)
 ################## application config ###################################
-application.config['MONGO_DBNAME'] ='applee'
-application.config['MONGO_URI'] = 'mongodb://elvischuks:123elvischuks@mongodb:27017/applee'
+#application.config['MONGO_DBNAME'] ='applee'
+#application.config['MONGO_URI'] = 'mongodb://elvischuks:123elvischuks@mongodb:27017/applee'
+
+application.config['MONGO_DBNAME'] = 'apply'
+application.config['MONGO_URI'] = 'mongodb://elvis:elvischuks@127.0.0.1:27017/apply'
 application.secret_key = "superisasecretisakey"
 ################# initialize pymongo ####################################
 mongo = PyMongo(application)
@@ -26,7 +29,7 @@ def add_header(r):
 
 ################# routes ####################################
 @application.route("/")
-def hello():
+def index():
     return render_template('index.html')
 @application.route('/register', methods=['GET', 'POST'])
 def register():
@@ -129,6 +132,8 @@ def dashboard():
         found = (doc for doc in check)
         return render_template('dashboard.html', user=user, found=found)
     return redirect(url_for('login'))
+
+
 @application.route('/dashboard/create', methods=['GET', 'POST'])
 def create():
     if 'email' in session:

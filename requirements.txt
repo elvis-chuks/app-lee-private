@@ -6,3 +6,4 @@ google-auth-httplib2==0.0.3
 pymongo==3.7.1
 Flask-PyMongo==2.1.0
 Werkzeug==0.14.1
+Pillow==5.3.0
