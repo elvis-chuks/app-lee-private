@@ -14,7 +14,7 @@ mongo = PyMongo(application)
 @application.route("/")
 def hello():
     e = mongo.db.apps
-    apps.insert({'name':'test'})
+    e.insert({'name':'test'})
     return 'hey this is applee'
 
 @application.route("/test")
