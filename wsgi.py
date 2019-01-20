@@ -204,8 +204,10 @@ def final():
             check = app.find_one({'img':img})
             checke = app.find_one({'email':session['email']})
             if checke:
-                if checke['pricing'] == 'free' and request.form['pricing'] == 'free':
-                    return ' you can only create one free app'
+                if checke['pricing']:
+                    if checke['pricing'] == 'free' and request.form['pricing'] == 'free':
+                        
+                        return ' you can only create one free app'
 
             if check:
                 ver = request.form['version']
