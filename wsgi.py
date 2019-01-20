@@ -202,12 +202,60 @@ def final():
         img = session['img']
         if request.method == 'POST':
             check = app.find_one({'img':img})
-            checke = app.find_one({'email':session['email']})
-            if checke:
-                if check['pricing'] is None and check:
-                    return 'go ahead'
-                elif check['pricing'] == 'free':
-                    return "only one free app allowed"
+            if check:
+                ver = request.form['version']
+                plat = request.form['platform']
+                pric = request.form['pricing']
+
+                app.update({'img':check['img']}, {'$set':{'version':ver,'platform':plat,'pricing':pric,'icon':img}})
+                f = request.files['icon']
+                filena = secure_filename(img)
+                f.save(os.path.join(upload_folder,filena))
+                #os.path.join(app.config['UPLOAD_FOLDER'],
+                from email.mime.multipart import MIMEMultipart
+                from email.mime.text import MIMEText
+                fromaddr = "appleeweb@gmail.com"
+                toaddr = session['email']
+                msg = MIMEMultipart()
+                msg['From'] = fromaddr
+                msg['To'] = toaddr
+                msg['Subject'] = "Applee support"
+                username = session['email']
+                body =  "Hello {} ".format(username)
+                html = """\
+                    <html>
+                    <head></head>
+                    <body>
+                    <h2>Hello from the Applee team</h2>
+                    <p>Thank you for deciding to use App-Lee </br>
+                    Your app is being created and will be uploaded to the app store,</br>
+                    kindly sit back and enjoy our services.</br>
+                    </p>
+                    <style>
+                    h2{
+	                   color:red;
+                       }
+                       </style>
+                       </body>
+                       </html>
+                       """
+                part1 = MIMEText(body,'plain')
+                part2 = MIMEText(html,'html')
+
+                msg.attach(part1)
+                msg.attach(part2)
+
+                #msg.attach(MIMEText(body, 'plain'))
+                import smtplib
+                s = smtplib.SMTP('smtp.gmail.com', 587)
+                s.ehlo()
+                s.starttls()
+                s.login("appleeweb@gmail.com", "@123Applee")
+                text = msg.as_string()
+                s.sendmail(fromaddr, toaddr, text)
+                s.quit()
+
+                return redirect(url_for('dashboard'))
 
         return render_template('final.html')
     return redirect(url_for('login'))
