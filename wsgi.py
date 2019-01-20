@@ -14,6 +14,11 @@ application.config['MONGO_URI'] = 'mongodb://elvischuks:123elvischuks@mongodb:27
 application.secret_key = "superisasecretisakey"
 ################# initialize pymongo ####################################
 mongo = PyMongo(application)
+upload = os.getcwd()
+upload_folder = upload + '/static/icon'
+pro_fold = upload + '/static/profile'
+
+
 @application.after_request
 def add_header(r):
     """
@@ -307,4 +312,4 @@ def logout():
         return redirect(url_for('login'))
     return redirect(url_for('index'))
 if __name__ == "__main__":
-    application.run()
+    application.run(debug=True)
