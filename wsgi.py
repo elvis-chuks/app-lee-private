@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, flash, request,render_template, redirect, url_for, session, make_response
 from flask_pymongo import PyMongo
 
 
@@ -13,11 +13,7 @@ mongo = PyMongo(application)
 
 @application.route("/")
 def hello():
-    e = mongo.db.apps
-    e.insert({'name':'test'})
-    check = e.find_one({'name':'test'})
-    name = check['name']
-    return name
+    return render_template('index.html')
 
 @application.route("/test")
 def test():
