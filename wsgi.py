@@ -3,10 +3,13 @@ from flask_pymongo import PyMongo
 
 
 application = Flask(__name__)
-mongo = PyMongo(application)
 
 application.config['MONGO_DBNAME'] ='applee'
 application.config['MONGO_URI'] = 'mongo://elvischuks:123elvischuks@127.0.0.1:27017/applee'
+application.secret_key = "superisasecretisakey"
+mongo = PyMongo(application)
+
+
 
 @application.route("/")
 def hello():
