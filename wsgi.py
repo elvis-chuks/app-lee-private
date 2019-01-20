@@ -6,11 +6,11 @@ import os
 ################# initialize flask ####################################
 application = Flask(__name__)
 ################## application config ###################################
-#application.config['MONGO_DBNAME'] ='applee'
-#application.config['MONGO_URI'] = 'mongodb://elvischuks:123elvischuks@mongodb:27017/applee'
+application.config['MONGO_DBNAME'] ='applee'
+application.config['MONGO_URI'] = 'mongodb://elvischuks:123elvischuks@mongodb:27017/applee'
 
-application.config['MONGO_DBNAME'] = 'apply'
-application.config['MONGO_URI'] = 'mongodb://elvis:elvischuks@127.0.0.1:27017/apply'
+#application.config['MONGO_DBNAME'] = 'apply'
+#application.config['MONGO_URI'] = 'mongodb://elvis:elvischuks@127.0.0.1:27017/apply'
 application.secret_key = "superisasecretisakey"
 ################# initialize pymongo ####################################
 mongo = PyMongo(application)
