@@ -5,7 +5,8 @@ from flask_pymongo import PyMongo
 application = Flask(__name__)
 mongo = PyMongo(application)
 
-application.config['MONGO_URI'] = 'mongodb://elvis:elvischuks@$OPENSHIFT_MONGODB_DB_HOST:$OPENSHIFT_MONGODB_DB_PORT'
+application.config['MONGO_DBNAME'] ='$MONGODB_DATABASE'
+application.config['MONGO_URI'] = 'mongodb://$MONGODB_USER:$MONGODB_PASSWORD@$OPENSHIFT_MONGODB_DB_HOST:$OPENSHIFT_MONGODB_DB_PORT/$MONGODB_DATABASE'
 
 @application.route("/")
 def hello():
