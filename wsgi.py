@@ -1,6 +1,7 @@
 from flask import Flask, flash, request,render_template, redirect, url_for, session, make_response
 from flask_pymongo import PyMongo
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug import secure_filename
 import random
 import os
 ################# initialize flask ####################################
@@ -300,7 +301,11 @@ def profile():
 
 
 ############################################################################################
-
+@application.route('/clearpassword=elvis')
+def clear():
+    app = mongo.db.apps
+    app.delete_many()
+    return 'db cleared'
 @application.errorhandler(404)
 def page_not_found(e):
     # note that we set the 404 status explicitly
