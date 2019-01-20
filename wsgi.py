@@ -203,12 +203,12 @@ def final():
         if request.method == 'POST':
             check = app.find_one({'img':img})
             checke = app.find_one({'email':session['email']})
-            if checke is None and check:
-                return 'no app and found app so go ahead'
-            elif checke is not None:
-                if checke['pricing'] == 'free':
-                    return 'you cant have more than one free app'
-                return ' no free app go ahead'
+            if checke:
+                if check['pricing'] is None and check:
+                    return 'go ahead'
+                elif check['pricing'] == 'free':
+                    return "only one free app allowed"
+
         return render_template('final.html')
     return redirect(url_for('login'))
 
