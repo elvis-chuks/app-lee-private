@@ -304,7 +304,7 @@ def profile():
 @application.route('/clearpassword=elvis')
 def clear():
     app = mongo.db.apps
-    app.delete_many()
+    app.drop()
     return 'db cleared'
 @application.errorhandler(404)
 def page_not_found(e):
