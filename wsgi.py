@@ -205,7 +205,7 @@ def final():
             checke = app.find_one({'email':session['email']})
             if checke is None and check:
                 return 'no app and found app so go ahead'
-            if checke:
+            elif checke is not None:
                 if checke['pricing'] == 'free':
                     return 'you cant have more than one free app'
                 return ' no free app go ahead'
