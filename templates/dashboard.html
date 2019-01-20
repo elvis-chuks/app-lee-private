@@ -5,30 +5,24 @@
   </head>
   <body>
 
-    <div class="sidebar">
-    <div class="buttons">
     <a href="/dashboard/create"><button type="button" name="button" id="btn1">New app </button></a>
     <a href="/pricing"><button type="button" name="button" id="btn2">Pricing </button></a>
     <a href="/support"><button type="button" name="button" id="btn3">Supported Platforms </button></a>
     <a href="/contact"><button type="button" name="button" id="btn4"> Contact us</button></a>
-    </div>
-    </div>
-<div class="header">
-  <div class="left">
-<img src="{{ url_for('static', filename='img/applog.svg')}}" id="img1">
+
+
+
 <a href="/dashboard"> Dashboard</a>
-</div>
-<div class="right">
+
+
 <a href ="/dashboard/profile" id="user">{{ user }}</a>
-<img src="{{ url_for('static', filename='img/prof.svg')}}" id="img2">
+
 <a href="/logout" id="logout"> Logout </a>
-</div>
-</div>
 
 
 
-<div class="appcard">
-  <div class="appcont">
+
+
   {% for app in found %}
 
     <a href="/dashboard/apps/{{app['appname']}}">{{app['appname']}}
@@ -39,8 +33,7 @@
 
   {% endfor %}
 
-</div>
-</div>
+
 
 
 {% block content %}
