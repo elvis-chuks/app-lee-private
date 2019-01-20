@@ -6,7 +6,7 @@ application = Flask(__name__)
 mongo = PyMongo(application)
 
 application.config['MONGO_DBNAME'] ='$MONGODB_DATABASE'
-application.config['MONGO_URI'] = '/bin/sh -i -c mongo 127.0.0.1:27017/$MONGODB_DATABASE -u $MONGODB_USER -p $MONGODB_PASSWORD --eval="quit()"'
+application.config['MONGO_URI'] = 'mongo://$MONGODB_USER:$MONGODB_PASSWORD@127.0.0.1:27017/$MONGODB_DATABASE'
 
 @application.route("/")
 def hello():
