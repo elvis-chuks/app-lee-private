@@ -1,0 +1,17 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+<form method="POST" action="/dashboard/create">
+  <input type="url" placeholder="Input web url(must start with http:// or https://)" name="url">
+  <input type="text" placeholder="App name" name="appname">
+  <input type="submit" value="Next">
+</form>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+  {% for message in messages %}
+   {{ message }}
+   {% endfor %}
+
+{% endif %}
+{% endwith %}
+
+{% endblock %}

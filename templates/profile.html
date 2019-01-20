@@ -1,0 +1,10 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+<img src="/static/profile/{{ fin }}" width="300" height="400">
+<form method="POST" action="/dashboard/profile" enctype="multipart/form-data">
+  <input type="text" value="{{ username }}" name="username">
+  <input type="file" name="photo" placeholder="Profile picture">
+  <input type="submit"  value="Update">
+
+  </form>
+{% endblock %}

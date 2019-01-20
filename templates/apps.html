@@ -1,0 +1,11 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+<p> App Name : {{ appname }}</p>
+<p> Version : {{ version }}</p>
+<p> Platform : {{ plat }}</p>
+<P> Website Url : <a href="{{ url }}">{{ url }}</a></p>
+<p> Pricing : {{ price }}</p>
+
+<img src="/static/screenshots/{{ img }}" alt="app screenshot" width="275px" height="500"/>
+<img src="/static/icon/{{ img }}" alt="app screenshot" />
+{% endblock %}

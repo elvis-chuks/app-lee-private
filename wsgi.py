@@ -108,6 +108,18 @@ def confirm(token):
             return redirect(url_for('dashboard'))
         flash('passwords do not match')
     return render_template('confirm.html', toke=toke)
+################################ login route ##########################
+@application.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        user = mongo.db.users
+        check = user.find_one({'email':request.form['email']})
+        if check:
+            if check_password_hash(pwhash=check['password'], password=request.form['password']):
+                session['email'] = request.form['email']
+                return redirect(url_for('dashboard'))
+            flash('incorrect password and email combo')
+    return render_template('login.html')
 @application.route('/dashboard')
 def dashboard():
     if 'email' in session:
@@ -117,7 +129,177 @@ def dashboard():
         found = (doc for doc in check)
         return render_template('dashboard.html', user=user, found=found)
     return redirect(url_for('login'))
+@application.route('/dashboard/create', methods=['GET', 'POST'])
+def create():
+    if 'email' in session:
+        user = session['email']
+        app = mongo.db.apps
+        if request.method == 'POST':
+            url = request.form['url']
+            name = request.form['appname']
+            import pprint
+            from apiclient.discovery import build
+            import socket
+            #make api call to googles urlTestingTools
+            API_KEY = 'AIzaSyACKc0SQ80qbBwgVnJUaBq_XVrmRHr8Ymw'
+            service = build('searchconsole', 'v1', developerKey=API_KEY)
+            params = {
+                  'url':url,
+                  'requestScreenshot':True,
+                  }
+            req = service.urlTestingTools().mobileFriendlyTest().run(body=params, x__xgafv=None)
+            try:
+                response = req.execute()
+                if response['mobileFriendliness'] == 'MOBILE_FRIENDLY':
+                    from PIL import Image
+                    from io import BytesIO
+                    import base64
+                    imgdata = response['screenshot']['data']
+                    #save image
+                    im = Image.open(BytesIO(base64.b64decode(imgdata)))
+                    im.save('static/screenshots/'+ name +'.png')
+                    img = name +'.png'
+                    #########
+                    check = app.find_one({'appname':name})
+
+                    if check is None:
+                        app.insert({
+                        'email':session['email'],
+                        'appname':name,
+                        'url':url,
+                        'img': img
+                        })
+                        session['img'] = img
+                        return redirect(url_for('createnext'))
+
+                    return 'app already exists'
+                return 'Sorry this website is not Mobile friendly'
+            except socket.timeout:
+                return 'there appears to be a problem at the moment, please try again later'
+        return render_template('create.html', user=user)
+    return redirect(url_for('login'))
+@application.route('/createnext')
+def createnext():
+    img = session['img']
+    return render_template('createnext.html',img=img)
+
+@application.route('/dashboard/final', methods=['GET','POST'])
+def final():
+    if 'email' in session:
+        user = mongo.db.users
+        app = mongo.db.apps
+        img = session['img']
+        if request.method == 'POST':
+            check = app.find_one({'img':img})
+            checke = app.find_one({'email':session['email']})
+            if checke:
+                if checke['pricing'] == 'free' and request.form['pricing'] == 'free':
+                    return ' you can only create one free app'
+
+            if check:
+                ver = request.form['version']
+                plat = request.form['platform']
+                pric = request.form['pricing']
+
+                app.update({'img':check['img']}, {'$set':{'version':ver,'platform':plat,'pricing':pric,'icon':img}})
+                f = request.files['icon']
+                filena = secure_filename(img)
+                f.save(os.path.join(upload_folder,filena))
+                #os.path.join(app.config['UPLOAD_FOLDER'],
+                from email.mime.multipart import MIMEMultipart
+                from email.mime.text import MIMEText
+                fromaddr = "appleeweb@gmail.com"
+                toaddr = session['email']
+                msg = MIMEMultipart()
+                msg['From'] = fromaddr
+                msg['To'] = toaddr
+                msg['Subject'] = "Applee support"
+                username = session['email']
+                body =  "Hello {} ".format(username)
+                html = """\
+                    <html>
+                    <head></head>
+                    <body>
+                    <h2>Hello from the Applee team</h2>
+                    <p>Thank you for deciding to use App-Lee </br>
+                    Your app is being created and will be uploaded to the app store,</br>
+                    kindly sit back and enjoy our services.</br>
+                    </p>
+                    <style>
+                    h2{
+	                   color:red;
+                       }
+                       </style>
+                       </body>
+                       </html>
+                       """
+                part1 = MIMEText(body,'plain')
+                part2 = MIMEText(html,'html')
+
+                msg.attach(part1)
+                msg.attach(part2)
+
+                #msg.attach(MIMEText(body, 'plain'))
+                import smtplib
+                s = smtplib.SMTP('smtp.gmail.com', 587)
+                s.ehlo()
+                s.starttls()
+                s.login("appleeweb@gmail.com", "@123Applee")
+                text = msg.as_string()
+                s.sendmail(fromaddr, toaddr, text)
+                s.quit()
+
+                return redirect(url_for('dashboard'))
 
 
+        return render_template('final.html')
+    return redirect(url_for('login'))
+
+@application.route('/dashboard/apps/<path:app>')
+def apps(app):
+    if 'email' in session:
+        appi = mongo.db.apps
+        check = appi.find_one({'appname': app })
+        appname = check['appname']
+        version = check['version']
+        plat = check['platform']
+        url = check['url']
+        img = check['img']
+        price = check['pricing']
+        user = session['email']
+        return render_template('apps.html', appname=appname, img=img,
+        version=version,plat=plat,url=url,price=price, user=user )
+    return redirect(url_for('login'))
+
+@application.route('/dashboard/profile', methods=['GET','POST'])
+def profile():
+    if 'email' in session:
+        user = session['email']
+        prof = mongo.db.users
+        check = prof.find_one({'email': user})
+        email = check['email']
+        username = check['username']
+        fin = email[2:7] +'.png'
+        if request.method == 'POST':
+            f = request.files['photo']
+            f.save(os.path.join(pro_fold,fin))
+            prof.update({'email':email}, {'$set':{'profile':fin, 'username':request.form['username']}})
+            flash('profile updated')
+        return render_template('profile.html', user=user, email=email, username=username, fin=fin)
+    return redirect(url_for('login'))
+
+
+############################################################################################
+
+@application.errorhandler(404)
+def page_not_found(e):
+    # note that we set the 404 status explicitly
+    return render_template('404.html'), 404
+@application.route('/logout')
+def logout():
+    if 'email'in session:
+        session.pop('email', None)
+        return redirect(url_for('login'))
+    return redirect(url_for('index'))
 if __name__ == "__main__":
     application.run()
