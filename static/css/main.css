@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+body{
+  width:100%;
+
+}
+.header{
+  width:100%;
+  position:absolute;
+  left:0px;
+  top:0px;
+  right:0px;
+  background: #FFFFFF;
+
+  height:67px;
+}
+.header .logo {
+  margin-top:14px;
+  margin-left: 100px;
+}
+.header a {
+  text-decoration: none;
+  text-align: center;
+  color: #141b26;
+  padding-right: 25px;
+  font-family: Roboto;
+}
+.header .nav{
+  float:right;
+  margin-right: 100px;
+  margin-top: -40px;
+  font-family: Roboto;
+}
+.header .nav button{
+width: 80px;
+text-align: center;
+height: 36px;
+background: #FFFFFF;
+border: 2px solid #141B26;
+box-sizing: border-box;
+border-radius: 10px;
+font-family: Roboto;
+margin-right: -20px;
+cursor:pointer;
+}
+.staimg{
+  position: absolute;
+  width:100%;
+  left:0px;
+  right:0px;
+}
+.staimg img {
+  width:100%;
+  position: absolute;
+  top:57px;
+  left:0px;
+  right:0px;
+
+
+}
+.staimg .stuff{
+margin-left: 700px;
+
+}
+.staimg .stuff #build{
+position: absolute;
+font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+line-height: normal;
+font-size: 48px;
+top:200px;
+color: #FFFFFF;
+width:500px;
+}
+.staimg .stuff #sto{
+  width:500px;
+position: absolute;
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+line-height: normal;
+font-size: 18px;
+top:350px;
+color: #FFFFFF;
+}
+.staimg .stuff button{
+position: absolute;
+width: 150px;
+height: 50px;
+font-size: 20px;
+top: 425px;
+background: #FFFFFF;
+border-radius: 10px;
+cursor:pointer;
+}
+footer{
+  position: absolute;
+  bottom:-140px;
+  width:100%;
+  left:0px;
+  right:0px;
+
+}
+footer p{
+margin-left:600px;
+}

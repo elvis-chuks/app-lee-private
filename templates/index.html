@@ -2,11 +2,35 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>App-lee</title>
+    <title>App-Lee</title>
+      <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/main.css')}}">
   </head>
   <body>
-    <h1>hello world! this site is underconstruction</h1>
-    <a href="{{ (url_for('register')) }}"> Register</a>
-    <a href="{{ (url_for('login')) }}">Login</a>
+    <div class="header">
+      <div class="logo">
+        <img src="{{url_for('static', filename='img/App-lee.svg')}}">
+      </div>
+      <div class="nav">
+        <a href="/pricing">Pricing</a>
+        <a href="/contact">Contact</a>
+    <a href="{{url_for('login')}}"><button type="button">Login</button></a>
+    <a href = "{{url_for('register')}}"><button type="button">Sign-up</button></a>
+  </div>
+  </div>
+
+  <div class="staimg">
+    <img src="{{ url_for('static', filename='img/Group 2.png')}}">
+    <div class="stuff">
+      <p id="build">Build cross platform apps for your website.</p>
+      <p id="sto">Easily create apps that run on andriod, ios windows,
+        linux and mac, bringing your audience closer to you.</p>
+        <a href = "{{url_for('register')}}"><button type="button">Sign-up</button></a>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>Copywright &copy  App-lee 2019</p>
+  </footer>
   </body>
 </html>
