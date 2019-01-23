@@ -3,6 +3,78 @@ body{
   width:100%;
 
 }
+  .header{
+    width:100%;
+    position: absolute;
+    top:0px;
+    left:0px;
+    right:0px;
+    background-color: #ffffff;
+    height: 50px;
+  }
+  .header .logo{
+    margin-left: 15px;
+    margin-top:5px;
+  }
+  .header a{
+    display:none;
+  }
+  .header a.icon{
+    float:right;
+    margin-right: 30px;
+    margin-top:-25px;
+    display: block;
+    color:#141B26;
+  }
+
+  .header.responsive{
+    position: relative;
+  }
+  .header.responsive a.icon{
+    display: block;
+    position: absolute;
+    right: 0px;
+    top: 70px;
+    width:100%;
+
+  }
+  .header.responsive a{
+    float: none;
+    display: block;
+    text-align: left;
+    text-decoration: none;
+    background-color: #141b26;
+    position: relative;
+    left:-10px;
+    right:0;
+    color:white;
+    top:30px;
+    padding-left: 30px;
+
+  }
+
+
+  .staimg {
+    display:none;
+  }
+  .staimg #mob{
+    display:inline;
+  }
+  footer{
+    position: absolute;
+    bottom:0px;
+    width:100%;
+    left:0px;
+    right:0px;
+
+  }
+  footer p{
+
+  }
+
+
+
+@media screen and (min-width: 1000px){
 .header{
   width:100%;
   position:absolute;
@@ -10,19 +82,23 @@ body{
   top:0px;
   right:0px;
   background: #FFFFFF;
-
   height:67px;
 }
+.header .nav .icon {
+  display: none;
+}
 .header .logo {
+  display: block;
   margin-top:14px;
   margin-left: 100px;
 }
 .header a {
+  display: inline;
   text-decoration: none;
-  text-align: center;
   color: #141b26;
   padding-right: 25px;
   font-family: Roboto;
+  margin-top:10px;
 }
 .header .nav{
   float:right;
@@ -30,25 +106,29 @@ body{
   margin-top: -40px;
   font-family: Roboto;
 }
-.header .nav button{
+.header .nav .button{
 width: 80px;
 text-align: center;
-height: 36px;
-background: #FFFFFF;
+height: 37px;
+background-color:#FFFFFF;
 border: 2px solid #141B26;
-box-sizing: border-box;
 border-radius: 10px;
 font-family: Roboto;
-margin-right: -20px;
 cursor:pointer;
+display: inline-block;
+
 }
 .staimg{
+  display: block;
   position: absolute;
   width:100%;
   left:0px;
   right:0px;
 }
-.staimg img {
+.staimg #mob{
+  display: none;
+}
+.staimg #desk {
   width:100%;
   position: absolute;
   top:57px;
@@ -58,7 +138,8 @@ cursor:pointer;
 
 }
 .staimg .stuff{
-margin-left: 700px;
+margin-left: 50%;
+width:30%;
 
 }
 .staimg .stuff #build{
@@ -103,4 +184,5 @@ footer{
 }
 footer p{
 margin-left:600px;
+}
 }
