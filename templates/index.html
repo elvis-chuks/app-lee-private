@@ -2,25 +2,30 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>App-Lee</title>
       <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/main.css')}}">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
-    <div class="header">
+    <div class="header" id="myTopnav">
       <div class="logo">
         <img src="{{url_for('static', filename='img/App-lee.svg')}}">
       </div>
       <div class="nav">
         <a href="/pricing">Pricing</a>
         <a href="/contact">Contact</a>
-    <a href="{{url_for('login')}}"><button type="button">Login</button></a>
-    <a href = "{{url_for('register')}}"><button type="button">Sign-up</button></a>
+    <a href="{{url_for('login')}}" class="button">Login</a>
+    <a href = "{{url_for('register')}}" class="button">Sign-up</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+   <i class="fa fa-bars"></i>
+    </a>
   </div>
   </div>
 
   <div class="staimg">
-    <img src="{{ url_for('static', filename='img/Group 2.png')}}">
-    <img src="{{ url_for('static', filename='img/Group 3.png')}}" id ="mob">
+    <img src="{{ url_for('static', filename='img/Group 2.png')}}" id="desk">
+    <img src="{{ url_for('static', filename='img/Group 3.png')}}" id="mob">
     <div class="stuff">
       <p id="build">Build cross platform apps for your website.</p>
       <p id="sto">Easily create apps that run on andriod, ios windows,
@@ -33,5 +38,16 @@
   <footer>
     <p>Copywright &copy  App-lee 2019</p>
   </footer>
+
+  <script type="text/javascript">
+  function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "header") {
+    x.className += " responsive";
+  } else {
+    x.className = "header";
+  }
+}
+  </script>
   </body>
 </html>
