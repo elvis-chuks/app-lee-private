@@ -9,8 +9,8 @@ body{
     top:0px;
     left:0px;
     right:0px;
-    background-color: #ffffff;
     height: 50px;
+    z-index: 10;
   }
   .header .logo{
     margin-left: 15px;
@@ -24,11 +24,15 @@ body{
     margin-right: 30px;
     margin-top:-25px;
     display: block;
-    color:#141B26;
+    color:#ffffff;
   }
 
   .header.responsive{
     position: relative;
+    top:-50px;
+    background-color: white;
+    display: block;
+
   }
   .header.responsive a.icon{
     display: block;
@@ -43,22 +47,66 @@ body{
     display: block;
     text-align: left;
     text-decoration: none;
-    background-color: #141b26;
     position: relative;
     left:-10px;
     right:0;
     color:white;
     top:30px;
     padding-left: 30px;
+    padding: 10px 20px;
 
   }
+.staimg{
+  z-index:-1;
+}
 
-
-  .staimg {
+  .staimg #desk{
     display:none;
   }
   .staimg #mob{
+    position: absolute;
+    top:-20px;
+    right:0;
+    left:0;
     display:inline;
+    width:100%;
+    z-index: -1;
+  }
+  .staimg .stuff{
+    position: absolute;
+    top:380px;
+    width:320px;
+    margin-left: 30px;
+
+  }
+  .staimg .stuff #build{
+    display: inline;
+    position: absolute;
+    color: white;
+    top:-70px;
+    font-family: Roboto;
+    font-size: 30px;
+
+  }
+  .staimg .stuff #sto{
+    display: inline;
+    position: relative;
+    color: white;
+    top:30px;
+    font-family: Roboto;
+    font-size: 15px;
+
+  }
+  .staimg .stuff button{
+  position: absolute;
+  width: 100px;
+  height: 33px;
+  font-size: 15px;
+  top: 90px;
+  background: #FFFFFF;
+  border-radius: 10px;
+  cursor:pointer;
+  left: 0;
   }
   footer{
     position: absolute;
@@ -69,7 +117,7 @@ body{
 
   }
   footer p{
-
+margin-left: 110px;
   }
 
 
@@ -124,23 +172,22 @@ display: inline-block;
   width:100%;
   left:0px;
   right:0px;
+  top:0;
 }
 .staimg #mob{
   display: none;
 }
 .staimg #desk {
+  display: inline;
   width:100%;
   position: absolute;
   top:57px;
   left:0px;
   right:0px;
-
-
 }
 .staimg .stuff{
 margin-left: 50%;
 width:30%;
-
 }
 .staimg .stuff #build{
 position: absolute;
@@ -149,7 +196,7 @@ font-style: normal;
 font-weight: bold;
 line-height: normal;
 font-size: 48px;
-top:200px;
+top:-200px;
 color: #FFFFFF;
 width:500px;
 }
@@ -161,7 +208,7 @@ font-style: normal;
 font-weight: normal;
 line-height: normal;
 font-size: 18px;
-top:350px;
+top:-50px;
 color: #FFFFFF;
 }
 .staimg .stuff button{
@@ -169,7 +216,7 @@ position: absolute;
 width: 150px;
 height: 50px;
 font-size: 20px;
-top: 425px;
+top: 20px;
 background: #FFFFFF;
 border-radius: 10px;
 cursor:pointer;
