@@ -8,11 +8,11 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
-    <div class="header" id="myTopnav">
+    <div class="header">
       <div class="logo">
         <img src="{{url_for('static', filename='img/App-lee.svg')}}">
       </div>
-      <div class="nav">
+      <div class="nav" id="myTopnav">
         <a href="/pricing">Pricing</a>
         <a href="/contact">Contact</a>
     <a href="{{url_for('login')}}" class="button">Login</a>
@@ -26,7 +26,7 @@
 
   <div class="staimg">
     <img src="{{ url_for('static', filename='img/Group 2.png')}}" id="desk">
-    <img src="{{ url_for('static', filename='img/Group 3.png')}}" id="mob">
+    <img src="{{ url_for('static', filename='img/Group 2.svg')}}" id="mob">
     <div class="stuff">
       <p id="build">Build cross platform apps for your website.</p>
       <p id="sto">Easily create apps that run on andriod, ios windows,
@@ -44,10 +44,10 @@
   <script type="text/javascript">
   function myFunction() {
   var x = document.getElementById("myTopnav");
-  if (x.className === "header") {
+  if (x.className === "nav") {
     x.className += " responsive";
   } else {
-    x.className = "header";
+    x.className = "nav";
   }
 }
   </script>
