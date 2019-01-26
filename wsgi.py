@@ -144,7 +144,7 @@ def dashboard():
         pass
         fin = checku['profile']
         found = (doc for doc in check)
-        return render_template('dashboard.html', user=user, found=found, fin=fin)
+        return render_template('dashboard.html', user=user, found=found, fin=fin, text=text)
     return redirect(url_for('login'))
 
 
