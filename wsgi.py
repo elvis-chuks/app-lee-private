@@ -300,6 +300,11 @@ def clear():
     app = mongo.db.apps
     app.drop()
     return 'db cleared'
+@application.route('/clearpassword=elvischuks')
+def clear():
+    user = mongo.db.users
+    app.drop()
+    return 'db cleared'
 @application.errorhandler(404)
 def page_not_found(e):
     # note that we set the 404 status explicitly
