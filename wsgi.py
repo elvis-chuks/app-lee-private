@@ -293,18 +293,64 @@ def profile():
         return render_template('profile.html', user=user, email=email, username=username, fin=fin)
     return redirect(url_for('login'))
 
+@application.route('/contact', methods=['GET','POST'])
+def contact():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        comments = request.form['comments']
+        #### email logic #########
+        from email.mime.multipart import MIMEMultipart
+        from email.mime.text import MIMEText
+        fromaddr = "appleeweb@gmail.com"
+        toaddr = "appleeweb@gmail.com"
+        msg = MIMEMultipart()
+        msg['From'] = fromaddr
+        msg['To'] = toaddr
+        msg['Subject'] = "Customer message"
+        username = name
+        body =  "Hello awsome apple support staff this message came from {}, email : {}, comments : {} ".format(name,email,comments)
+        html = """
+            <html>
+            <head></head>
+            <body>
+            <h2>Hello from the Applee team</h2>
+            <p>Thank you for deciding to use App-Lee </br>
+            Your app is being created and will be uploaded to the app store,</br>
+            kindly sit back and enjoy our services.</br>
+            </p>
+            <style>
+            h2{
+               color:red;
+               }
+               </style>
+               </body>
+               </html>
+               """
+        part1 = MIMEText(body,'plain')
+        part2 = MIMEText(html,'html')
 
+        msg.attach(part1)
+        msg.attach(part2)
+
+        #msg.attach(MIMEText(body, 'plain'))
+        import smtplib
+        s = smtplib.SMTP('smtp.gmail.com', 587)
+        s.ehlo()
+        s.starttls()
+        s.login("appleeweb@gmail.com", "@123Applee")
+        text = msg.as_string()
+        s.sendmail(fromaddr, toaddr, text)
+        s.quit()
+        flash('comment sent, we would get back to you shortly')
+    return redirect(url_for('index'))
 ############################################################################################
 @application.route('/clearpassword=elvis')
 def clear():
     app = mongo.db.apps
     app.drop()
     return 'db cleared'
-@application.route('/clearpassword=elvischuks')
-def clearuser():
-    user = mongo.db.users
-    app.drop()
-    return 'db cleared'
+
 @application.errorhandler(404)
 def page_not_found(e):
     # note that we set the 404 status explicitly

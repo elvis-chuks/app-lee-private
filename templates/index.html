@@ -360,6 +360,18 @@
       <p style="color:#141B26;"><span class="glyphicon glyphicon-phone"></span> +234 8100726139</p>
       <p style="color:#141B26;"><span class="glyphicon glyphicon-envelope"></span> appleeweb@gmail.com</p>
     </div>
+    
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-primary" role="alert">
+          {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <form action="/contact" method="POST">
     <div class="col-sm-7 slideanim">
       <div class="row">
         <div class="col-sm-6 form-group">
@@ -376,6 +388,8 @@
         </div>
       </div>
     </div>
+
+  </form>
   </div>
 </div>
 
