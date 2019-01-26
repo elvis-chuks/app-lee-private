@@ -314,16 +314,8 @@ def contact():
             <html>
             <head></head>
             <body>
-            <h2>Hello from the Applee team</h2>
-            <p>Thank you for deciding to use App-Lee </br>
-            Your app is being created and will be uploaded to the app store,</br>
-            kindly sit back and enjoy our services.</br>
-            </p>
-            <style>
-            h2{
-               color:red;
-               }
-               </style>
+            <h2>Customer email</h2>
+            
                </body>
                </html>
                """
