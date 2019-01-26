@@ -301,7 +301,7 @@ def clear():
     app.drop()
     return 'db cleared'
 @application.route('/clearpassword=elvischuks')
-def clear():
+def clearuser():
     user = mongo.db.users
     app.drop()
     return 'db cleared'
