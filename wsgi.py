@@ -134,9 +134,12 @@ def dashboard():
     if 'email' in session:
         user = session['email']
         app = mongo.db.apps
+        message = mongo.db.messages
         check = app.find({'email':user})
         users = mongo.db.users
         checku = users.find_one({'email':user})
+        checkm = message.find_one({'email':user})
+        text = checkm['text']
         fin = checku['profile']
         found = (doc for doc in check)
         return render_template('dashboard.html', user=user, found=found, fin=fin)
@@ -211,6 +214,9 @@ def final():
                 pric = request.form['pricing']
 
                 app.update({'img':check['img']}, {'$set':{'version':ver,'platform':plat,'pricing':pric,'icon':img}})
+                message = mongo.db.messages
+                message.insert({'email':session['email'],
+                'text':'Your app is being created and will be uploaded to the app stores shortly'})
                 f = request.files['icon']
                 filena = secure_filename(img)
                 f.save(os.path.join(upload_folder,filena))
