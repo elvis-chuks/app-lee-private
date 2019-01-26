@@ -141,10 +141,10 @@ def dashboard():
         checkm = message.find_one({'email':user})
         if checkm:
             text = checkm['text']
-        pass
+            render_template('dashboard.html', text=text)
         fin = checku['profile']
         found = (doc for doc in check)
-        return render_template('dashboard.html', user=user, found=found, fin=fin, text=text)
+        return render_template('dashboard.html', user=user, found=found, fin=fin)
     return redirect(url_for('login'))
 
 
