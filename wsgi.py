@@ -135,8 +135,11 @@ def dashboard():
         user = session['email']
         app = mongo.db.apps
         check = app.find({'email':user})
+        users = mongo.db.users
+        checku = users.find_one({'email':user})
+        fin = checku['profile']
         found = (doc for doc in check)
-        return render_template('dashboard.html', user=user, found=found)
+        return render_template('dashboard.html', user=user, found=found, fin=fin)
     return redirect(url_for('login'))
 
 
@@ -315,7 +318,7 @@ def contact():
             <head></head>
             <body>
             <h2>Customer email</h2>
-            
+
                </body>
                </html>
                """
