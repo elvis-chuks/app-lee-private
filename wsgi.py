@@ -139,7 +139,9 @@ def dashboard():
         users = mongo.db.users
         checku = users.find_one({'email':user})
         checkm = message.find_one({'email':user})
-        text = checkm['text']
+        if check:
+            text = checkm['text']
+        pass
         fin = checku['profile']
         found = (doc for doc in check)
         return render_template('dashboard.html', user=user, found=found, fin=fin)
