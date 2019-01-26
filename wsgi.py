@@ -139,7 +139,7 @@ def dashboard():
         users = mongo.db.users
         checku = users.find_one({'email':user})
         checkm = message.find_one({'email':user})
-        if check:
+        if checkm:
             text = checkm['text']
         pass
         fin = checku['profile']
