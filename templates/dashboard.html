@@ -200,10 +200,10 @@
                   <div class="card">
                     {% if app['img'] %}
 
-                      <img class="card-img-top" src="/static/icon/{{ app['img'] }}" alt="Card image cap">
+                      <a href"/dashboard/apps/{{app['appname']}}"><img class="card-img-top" src="/static/icon/{{ app['img'] }}" alt="Card image cap"></a>
                       {% endif %}
                       <div class="card-body">
-                          <h4 class="card-title mb-3"><a href"/dashboard/apps/{{app['appname']}}">{{app['appname']}}</a></h4>
+                          <h4 class="card-title mb-3">{{app['appname']}}</h4>
                           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
                               content.
                           </p>
