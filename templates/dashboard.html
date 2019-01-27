@@ -194,25 +194,23 @@
             <!-- END BREADCRUMB-->
 
 
-            {% for app in found %}
+{% for app in found %}
+<div class="col-md-4">
+<div class="card" >
+  <div class="card-body">
+    <div class="mx-auto d-block">
+      {% if app['img'] %}
+      <img class="rounded-circle mx-auto d-block" src="/static/icon/{{ app['img'] }}" alt="App icon">
+      {% endif %}
+      <hr>
+<h5 class="text-sm-center mt-2 mb-1"><a href="/dashboard/apps/{{ app['appname']}} ">{{ app['appname']}}</a></h5>
+</div>
 
-              <div class="col-md-4">
-                  <div class="card">
-                    {% if app['img'] %}
+</div>
 
-                      <img class="card-img-top" src="/static/icon/{{ app['img'] }}" alt="Card image cap">
-                      {% endif %}
-                      <div class="card-body">
-                          <h4 class="card-title mb-3">{{app['appname']}}</h4>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                              content.
-                          </p>
-                          <a href"/dashboard/apps/{{app['appname']}}"><button type="button" class="fadeIn fourth">Open</button></a>
-                      </div>
-                  </div>
-              </div>
-
-            {% endfor %}
+</div>
+</div>
+{% endfor %}
 
 
 
