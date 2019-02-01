@@ -1,13 +1,100 @@
-<form method="POST" action="/dashboard/final" enctype="multipart/form-data">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>App-Lee</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style>
+    .myform{
+      width:350px;
+      margin:auto;
+      margin-top:100px;
+    }
+    .navbar {
+      margin-bottom: 0;
+      background-color: #141B26;
+      z-index: 9999;
+      border: 0;
+      font-size: 12px !important;
+      line-height: 1.42857143 !important;
+      letter-spacing: 4px;
+      border-radius: 0;
+      font-family: Montserrat, sans-serif;
+    }
+    .navbar li a, .navbar .navbar-brand {
+      color: #fff !important;
+    }
+    .navbar-nav li a:hover, .navbar-nav li.active a {
+      color: #f4511e !important;
+      background-color: #fff !important;
+    }
+    .navbar-default .navbar-toggle {
+      border-color: transparent;
+      color: #fff !important;
+    }
+    input[type=number],input[type=file]{
+      width:300px;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+
+
+    }
+    select{
+      width:300px;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+    }
+    </style>
+  </head>
+  <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!--<a class="navbar-brand" href="#myPage" style="">App-Lee</a>-->
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-right" style="display:inline;">
+            <li><a href="/dashboard">Dashboard</a></li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+<form method="POST" action="/dashboard/final" enctype="multipart/form-data" class="myform">
+  <div class="form-group">
   <input type="number" name="version" placeholder="Version">
+  </div>
+  <div class="form-group">
   <select name="platform">
     <option value="Andriod">Andriod</option>
     <option value="IOS">IOS</option>
     </select>
+    </div>
+    <div class="form-group">
     <select name="pricing">
       <option value="free">Free</option>
       <option value="paid">Paid</option>
       </select>
-      <input type="file" accept="image/*" name="icon">
+      </div>
+      <div class="form-group">
+      <input type="file" accept="image/*" name="icon" value="">
+      </div>
     <input type="submit"  value="Next">
   </form>
+</body>
+</html>
