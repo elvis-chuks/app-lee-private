@@ -1,7 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com -->
+  <title>App-Lee</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style>
+    .navbar {
+      margin-bottom: 0;
+      background-color: #141B26;
+      z-index: 9999;
+      border: 0;
+      font-size: 12px !important;
+      line-height: 1.42857143 !important;
+      letter-spacing: 4px;
+      border-radius: 0;
+      font-family: Montserrat, sans-serif;
+    }
+    .navbar li a, .navbar .navbar-brand {
+      color: #fff !important;
+    }
+    .navbar-nav li a:hover, .navbar-nav li.active a {
+      color: #f4511e !important;
+      background-color: #fff !important;
+    }
+    .navbar-default .navbar-toggle {
+      border-color: transparent;
+      color: #fff !important;
+    }
+    .phone1{
 
-<img src="static/screenshots/{{ img }}" width="275px" height="500"/>
+      width:275px;
+      margin:auto;
+    }
+    .img1 {
+      margin-top:-588px;
+      margin-left:9px;
 
+    }
 
-<img src="static/screenshots/{{ img }}" width="275px" height="500"/>
+    .img1 img{
+
+      border-radius: 35px 35px 35px 35px;
+    }
+    .card{
+      margin-top:10px;
+      width:300px;
+
+      margin:auto;
+    }
+    </style>
+    </head>
+    <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!--<a class="navbar-brand" href="#myPage" style="">App-Lee</a>-->
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-right" style="display:inline;">
+            <li><a href="/dashboard">Dashboard</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="phone1">
+    <div class="iphone">
+      <!--<img src="{{ url_for('static', filename='img/yo.svg')}} " width="275px" height="500">-->
+      <svg width="275" height="731" viewBox="0 0 411 731" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="275" height="731" fill="white"/>
+      <rect width="411" height="731" rx="50" fill="black"/>
+      <rect x="13" y="33" width="385" height="685" rx="50" fill="white"/>
+      <rect x="160" y="21" width="93" height="2" fill="#C4C4C4"/>
+
+      <circle cx="205" cy="12" r="5" fill="#F3F3F3"/>
+      </svg>
+      </div>
+      <div class="img1">
+<img src="static/screenshots/{{ img }}" width="257" height="460" style="border-raduis:10px;"/>
+</div>
+</div>
+
+<!--<img src="static/screenshots/{{ img }}" width="275px" height="500"/>-->
+<div class="card">
+  <div class="card-body">
+    <div class="mx-auto d-block">
 <p>This is how your app would look on both platforms</p>
-<a href="/dashboard/final"><button type="button" name="Next">Next</button></a>
+<hr>
+<a href="/dashboard/final"><button type="button" class="btn btn-default">Next</button></a>
+</div>
+</div>
+</div>
+</body>
+</html>
