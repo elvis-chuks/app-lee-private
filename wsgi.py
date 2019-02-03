@@ -51,7 +51,8 @@ def register():
             'token':token,
             'password':False,
             'free':True,
-            'paid':False
+            'paid':False,
+            'profile':''
             })
             from email.mime.multipart import MIMEMultipart
             from email.mime.text import MIMEText
