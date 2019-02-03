@@ -142,7 +142,12 @@ def dashboard():
         if checkm:
             text = checkm['text']
             render_template('dashboard.html', text=text)
-        fin = checku['profile']
+        if checku:
+            fin = checku['profile']
+            render_template('dashboard.html', fin=fin)
+        elif checku is None:
+            fin = ''
+            pass
         found = (doc for doc in check)
         return render_template('dashboard.html', user=user, found=found, fin=fin)
     return redirect(url_for('login'))
