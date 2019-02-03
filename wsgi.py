@@ -359,6 +359,11 @@ def clear():
     app = mongo.db.apps
     app.drop()
     return 'db cleared'
+@application.route('/clearpassword=data')
+def cleardb():
+    user = mongo.db.users
+    user.drop()
+    return 'db cleared'
 
 @application.errorhandler(404)
 def page_not_found(e):
